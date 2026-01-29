@@ -1,73 +1,145 @@
-# React + TypeScript + Vite
+# Frontend Engineer – Technical Assessment  
+**ClearSpot.ai | Stage 2**
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Overview
 
-Currently, two official plugins are available:
+This repository contains my submission for the **Frontend Engineer – Stage 2 Technical Assessment** at **ClearSpot.ai**.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+The project demonstrates:
+- API integration using React and TypeScript
+- Real-time data handling with WebSockets
+- Proper error handling and UX patterns
+- Clean, scalable, production-ready frontend code
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Tech Stack
 
-## Expanding the ESLint configuration
+- React 18
+- TypeScript
+- Vite
+- @tanstack/react-query
+- WebSocket API
+- Custom CSS (no UI framework)
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Project Setup
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+### 1. Clone the repository
+```bash
+git clone <repository-url>
+cd <project-folder>
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+2. Install dependencies
+npm install
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+3. Run the project
+npm run dev
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Project Structure
+src/
+├── api/
+│   ├── apiClient.ts        # Reusable API client
+│   └── types/              # Shared TypeScript types
+├── hooks/
+│   ├── useSites.ts         # Paginated data fetching
+│   └── useWebSocket.ts     # WebSocket hook
+├── components/
+│   ├── SiteList.tsx        # Paginated site listing UI
+│   ├── CreateSite.tsx      # Optimistic update form
+│   └── ErrorBoundary.tsx   # Global error boundary
+├── styles/
+│   └── SiteList.css        # Application styling
+└── main.tsx
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Implemented Features
+Part 1: API Integration
+
+Reusable API client with GET, POST, PUT, DELETE methods
+
+Centralized error handling
+
+Integrated with React Query
+
+Fully typed with TypeScript
+
+Part 2: Real-Time Data Handling
+
+Custom WebSocket hook
+
+Handles connection lifecycle and reconnection
+
+Real-time updates rendered in UI
+
+Part 3: Error Handling & UX
+
+Global Error Boundary
+
+User-friendly error messages
+
+Loading and disabled states
+
+Optimistic UI updates with rollback on failure
+
+Part 4: Code Quality
+
+Clean separation of concerns
+
+No unnecessary any usage
+
+Readable and maintainable code
+
+Production-style UI layout
+
+UI & UX Decisions
+
+Card-based layout inspired by real SaaS dashboards
+
+Stable pagination with fixed page size
+
+Skeleton loaders for better perceived performance
+
+Disabled button states for better usability
+
+Assumptions
+
+Backend pagination was not available, so client-side pagination was implemented to mimic server-side behavior.
+
+WebSocket events follow a predefined structure.
+
+Authentication flow is simplified for demonstration purposes.
+
+Known Limitations
+
+Pagination is client-side
+
+WebSocket server is mocked / public
+
+Limited automated test coverage due to time constraints
+
+Submission Notes
+
+Time spent: ~4–6 hours
+
+Focused on correctness, clarity, and real-world patterns
+
+Code is structured to be easily extendable
+
+Final Checklist
+
+ API integration completed
+
+ Pagination working correctly
+
+ Real-time updates implemented
+
+ Error handling and UX improvements added
+
+ TypeScript-safe codebase
+
+ Clear README with setup instructions
+
+Candidate: Priyanka Ingle
+Role: Frontend Engineer
+Company: ClearSpot.ai
