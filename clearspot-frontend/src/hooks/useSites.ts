@@ -10,7 +10,6 @@ export const useSites = (page: number) => {
     queryFn: async () => {
       const data = await apiClient.get<any[]>("/posts");
 
-      const totalPages = Math.ceil(data.length / PAGE_SIZE);
       const start = (page - 1) * PAGE_SIZE;
       const end = start + PAGE_SIZE;
 
@@ -22,7 +21,7 @@ export const useSites = (page: number) => {
         })),
         pagination: {
           page,
-          total: totalPages,
+          total: Math.ceil(data.length / PAGE_SIZE),
         },
       };
     },
