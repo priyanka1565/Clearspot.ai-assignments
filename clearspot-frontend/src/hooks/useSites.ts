@@ -2,13 +2,15 @@ import { useQuery } from "@tanstack/react-query";
 import { apiClient } from "../api/apiClient";
 import type { SiteResponse } from "../api/types/site";
 
+const PAGE_SIZE = 5;
+
 export const useSites = (page: number) => {
   return useQuery<SiteResponse>({
     queryKey: ["sites", page],
     queryFn: async () => {
       const data = await apiClient.get<any[]>("/posts");
 
-      const PAGE_SIZE = 5;
+      const totalPages = Math.ceil(data.length / PAGE_SIZE);
       const start = (page - 1) * PAGE_SIZE;
       const end = start + PAGE_SIZE;
 
@@ -20,10 +22,13 @@ export const useSites = (page: number) => {
         })),
         pagination: {
           page,
-          total: Math.ceil(data.length / PAGE_SIZE),
+          total: totalPages,
         },
       };
     },
-    placeholderData: (prev) => prev, 
+   placeholderData: (prev) => prev, 
   });
 };
+
+
+
